@@ -219,6 +219,7 @@ Total cycles = Number of instructions + (Pipeline stages - 1)
 
 You can see the start and stop clock difference is **200 ns**, and one clock cycle is **10 ns**, so total **20 clock cycles** this code takes.
 This matches with the **calculated result**.
+Also when MemwriteE is one at that time we are writing the data mem[0] location.
 
 ---
 
