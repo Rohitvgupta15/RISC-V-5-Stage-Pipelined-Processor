@@ -368,14 +368,14 @@ However, in simulation:
 
 ## 📷 Simulation Waveform
 
-![Simulation Waveform](https://github.com/Rohitvgupta15/RISC-V-5-Stage-Pipelined-Processor/blob/main/VIDEO/sort_cycle.png)
+![Simulation Waveform](https://github.com/Rohitvgupta15/RISC-V-5-Stage-Pipelined-Processor/blob/main/VIDEO/bubble_sort_decimal.png)
 
 You can see the start and stop clock difference is **560 ns**, and one clock cycle is **10 ns**, so total **56 clock cycles** this code takes.
 This matches with the **observed execution**.
 
 Also when **MemWriteE is high**, sorted values are written sequentially into memory.
 
-![Simulation Waveform](https://github.com/Rohitvgupta15/RISC-V-5-Stage-Pipelined-Processor/blob/main/VIDEO/sort_mem.png)
+![Simulation Waveform](https://github.com/Rohitvgupta15/RISC-V-5-Stage-Pipelined-Processor/blob/main/VIDEO/bubble_mem_reg_data.png)
 
 ---
 
