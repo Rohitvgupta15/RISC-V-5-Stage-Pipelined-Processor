@@ -1,10 +1,17 @@
-# 🚀 RISC-V 5-Stage Pipelined Processor
+# 🚀 RISC-V 5-Stage Pipelined Processor 
 
-This repository contains a **32-bit RISC-V 5-stage pipelined processor** implemented in Verilog HDL.
+This repository contains a **32-bit RISC-V 5-stage pipelined processor** implemented in Verilog HDL.  
 The design follows a modular approach with clearly separated pipeline stages and supporting units.
 
 ---
 
+## 📘 Course Information
+
+- **Course Name:** IC Design  
+- **Course Code:** EE652  
+- **Group Number:** 5  
+
+---
 ## 📌 Features
 
 * 5-stage pipeline architecture
