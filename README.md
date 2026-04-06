@@ -385,6 +385,43 @@ Also when **MemWriteE is high**, sorted values are written sequentially into mem
 ![Simulation Waveform](https://github.com/Rohitvgupta15/RISC-V-5-Stage-Pipelined-Processor/blob/main/VIDEO/bubble_mem_reg_data.png)
 
 ---
+# Instruction (Pipelined Processor)
+# 1) jalr (Jump and Link Register)
+## 📌 Description
+
+JALR (Jump and Link Register) is a RISC-V instruction that jumps to an address formed by adding a 12-bit signed immediate to register rs1, while saving the return address (PC+4) into register rd
+---
+
+## 🧠 Instruction Memory (with Assembly)
+
+```verilog
+    mem[0] = 32'h00c00093;   // addi x1, x0, 12   → target address = mem[3]
+    mem[1] = 32'h00000393;   // addi x7, x0, 0    → should be skipped
+    mem[2] = 32'h00008167;   // jalr x2, 0(x1)    → jump to mem[3], x2 = return addr
+    mem[3] = 32'h00100393;   // addi x7, x0, 1    → SHOULD EXECUTE
+    mem[4] = 32'h00702023;   // sw x7, 0(x0)      → store 1 to memory[0]
+    mem[5] = 32'h00000013;   // nop
+```
+
+---
+
+## 📷 Simulation Waveform
+
+![Simulation Waveform](https://github.com/Rohitvgupta15/RISC-V-5-Stage-Pipelined-Processor/blob/main/VIDEO/jalr_decimal.png)
+
+* When JumpE = 1, the ALU computes the target address (12), which is stored in the destination register x2 (Rd) as the return/next PC.
+* The same ALU result is used to update the Program Counter (PC ← PCTargetE), causing a jump.
+* As this repeats, the PC keeps jumping to the same address, creating a loop in execution.
+Also when RegwriteE is one at that time we are writing the ALUresult data in  reg[2] location.
+![Simulation Waveform](https://github.com/Rohitvgupta15/RISC-V-5-Stage-Pipelined-Processor/blob/main/VIDEO/jalr_reg_data.png)
+
+---
+
+## ✅ Conclusion
+
+* The pipeline executes the program in **20 clock cycles (ideal case)**
+* Simulation result matches theoretical calculation
+* Confirms correct pipeline behavior
 
 ## ✅ Conclusion
 
