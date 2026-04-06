@@ -155,6 +155,80 @@ A demo video is included in this repository demonstrating:
 * Pipeline behavior
   [![Watch Demo](https://github.com/Rohitvgupta15/RISC-V-5-Stage-Pipelined-Processor/blob/main/VIDEO/step_to_run_testcases.mp4)
 ---
+# Q1. Maximum of 5 Numbers (Pipelined Processor)
+
+## 📌 Description
+
+This program is written for a **5-stage pipelined RISC-V processor**.
+It initializes 5 numbers, compares them sequentially, finds the **maximum value**, and stores the result in memory.
+
+---
+
+## 🧠 Instruction Memory (with Assembly)
+
+```verilog
+mem[0]  = 32'h00f00513;   // addi x10, x0, 15     -> x10 = 15
+mem[1]  = 32'h02a00593;   // addi x11, x0, 42     -> x11 = 42
+mem[2]  = 32'h00700613;   // addi x12, x0, 7      -> x12 = 7
+mem[3]  = 32'h05900693;   // addi x13, x0, 89     -> x13 = 89
+mem[4]  = 32'h01700713;   // addi x14, x0, 23     -> x14 = 23
+
+mem[5]  = 32'h000502b3;   // add  x5, x10, x0     -> x5 = x10
+mem[6]  = 32'h00b2d463;   // bge  x5, x11, +8     -> if x5 >= x11 skip next
+mem[7]  = 32'h000582b3;   // add  x5, x11, x0     -> update max
+
+mem[8]  = 32'h00c2d463;   // bge  x5, x12, +8
+mem[9]  = 32'h000602b3;   // add  x5, x12, x0
+
+mem[10] = 32'h00d2d463;   // bge  x5, x13, +8
+mem[11] = 32'h000682b3;   // add  x5, x13, x0
+
+mem[12] = 32'h00e2d463;   // bge  x5, x14, +8
+mem[13] = 32'h000702b3;   // add  x5, x14, x0
+
+mem[14] = 32'h00502023;   // sw   x5, 0(x0)       -> store max value
+mem[15] = 32'h00000063;   // beq  x0, x0, 0       -> infinite loop (halt)
+```
+
+---
+
+## ⚙️ Functionality
+
+* Initializes values: **15, 42, 7, 89, 23**
+* Compares values sequentially
+* Stores the **maximum value (89)** in memory
+* Ends with an infinite loop
+
+---
+
+## ⏱️ Clock Cycle Calculation
+
+For a **5-stage pipeline**:
+
+```
+Total cycles = Number of instructions + (Pipeline stages - 1)
+             = 16 + (5 - 1)
+             = 20 cycles
+```
+
+---
+
+## 📷 Simulation Waveform
+
+![Simulation Waveform](image.png)
+
+You can see the start and stop clock difference is **200 ns**, and one clock cycle is **10 ns**, so total **20 clock cycles** this code takes.
+This matches with the **calculated result**.
+
+---
+
+## ✅ Conclusion
+
+* The pipeline executes the program in **20 clock cycles (ideal case)**
+* Simulation result matches theoretical calculation
+* Confirms correct pipeline behavior
+
+---
 
 ## 📈 Applications
 
