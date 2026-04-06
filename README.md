@@ -74,7 +74,11 @@ lui, auipc
 Use the following command in the **Tcl console**:
 
 ```tcl
-set_property -name {xsim.simulate.xsim.more_options} -value {-testplusarg bne_pass} -objects [get_filesets sim_1]
+set_property -name {xsim.simulate.xsim.more_options} -value {-testplusarg <textcase_name> } -objects [get_filesets sim_1]
+close_sim
+launch_simulation
+eg. 
+set_property -name {xsim.simulate.xsim.more_options} -value {-testplusarg **bne_pass**} -objects [get_filesets sim_1]
 close_sim
 launch_simulation
 ```
