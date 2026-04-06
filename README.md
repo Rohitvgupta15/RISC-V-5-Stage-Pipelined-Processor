@@ -231,6 +231,163 @@ Also when MemwriteE is one at that time we are writing the data mem[0] location.
 * Confirms correct pipeline behavior
 
 ---
+# Q2. Bubble Sort of 5 Numbers (Pipelined Processor with Initialization)
+
+## 📌 Description
+
+This program is written for a **5-stage pipelined RISC-V processor**.
+It initializes 5 numbers, performs **bubble sort using multiple passes**, and stores the **sorted values in memory**.
+
+---
+
+## 🧠 Instruction Memory (with Assembly)
+
+```verilog
+mem[0]  = 32'h00500093; // addi x1, x0, 5   → x1 = 5
+mem[1]  = 32'h00300113; // addi x2, x0, 3   → x2 = 3
+mem[2]  = 32'h00800193; // addi x3, x0, 8   → x3 = 8
+mem[3]  = 32'h00400213; // addi x4, x0, 4   → x4 = 4
+mem[4]  = 32'h00200293; // addi x5, x0, 2   → x5 = 2
+
+// -------- PASS 1 --------
+mem[5]  = 32'h00115863; // bge x2, x1 → if x2>=x1 skip swap
+mem[6]  = 32'h00008333; // add x6, x1, x0 → temp = x1
+mem[7]  = 32'h000100b3; // add x1, x2, x0 → x1 = x2
+mem[8]  = 32'h00030133; // add x2, x6, x0 → x2 = temp
+
+mem[9]  = 32'h0021d863; // bge x3, x2 → compare
+mem[10] = 32'h00010333; // temp = x2
+mem[11] = 32'h00018133; // x2 = x3
+mem[12] = 32'h000301b3; // x3 = temp
+
+mem[13] = 32'h00325863; // bge x4, x3
+mem[14] = 32'h00018333; // temp = x3
+mem[15] = 32'h000201b3; // x3 = x4
+mem[16] = 32'h00030233; // x4 = temp
+
+mem[17] = 32'h0042d863; // bge x5, x4
+mem[18] = 32'h00020333; // temp = x4
+mem[19] = 32'h00028233; // x4 = x5
+mem[20] = 32'h000302b3; // x5 = temp
+
+// -------- PASS 2 --------
+mem[21] = 32'h00115863;
+mem[22] = 32'h00008333;
+mem[23] = 32'h000100b3;
+mem[24] = 32'h00030133;
+
+mem[25] = 32'h0021d863;
+mem[26] = 32'h00010333;
+mem[27] = 32'h00018133;
+mem[28] = 32'h000301b3;
+
+mem[29] = 32'h00325863;
+mem[30] = 32'h00018333;
+mem[31] = 32'h000201b3;
+mem[32] = 32'h00030233;
+
+// -------- PASS 3 --------
+mem[33] = 32'h00115863;
+mem[34] = 32'h00008333;
+mem[35] = 32'h000100b3;
+mem[36] = 32'h00030133;
+
+mem[37] = 32'h0021d863;
+mem[38] = 32'h00010333;
+mem[39] = 32'h00018133;
+mem[40] = 32'h000301b3;
+
+// -------- PASS 4 --------
+mem[41] = 32'h00115863;
+mem[42] = 32'h00008333;
+mem[43] = 32'h000100b3;
+mem[44] = 32'h00030133;
+
+// -------- STORE SORTED VALUES --------
+mem[45] = 32'h00100393; // addi x7, x0, 1 → base addr = 1
+
+mem[46] = 32'h0013a023; // sw x1, 0(x7)
+mem[47] = 32'h00138393; // x7++
+mem[48] = 32'h0023a023; // sw x2
+
+mem[49] = 32'h00138393; // x7++
+mem[50] = 32'h0033a023; // sw x3
+
+mem[51] = 32'h00138393; // x7++
+mem[52] = 32'h0043a023; // sw x4
+
+mem[53] = 32'h00138393; // x7++
+mem[54] = 32'h0053a023; // sw x5
+
+// -------- END --------
+mem[55] = 32'h00000013; // NOP
+```
+
+---
+
+## ⚙️ Functionality
+
+* Initializes values: **5, 3, 8, 4, 2**
+* Performs **bubble sort** using multiple passes
+* Uses **compare and swap operations**
+* Stores sorted values in memory locations starting from address 1
+
+👉 Final sorted output: **2, 3, 4, 5, 8**
+
+---
+
+## ⏱️ Clock Cycle Analysis
+
+```text
+Total instructions = 56
+```
+
+### 🔹 Theoretical Calculation (with pipeline fill)
+
+```
+Total cycles = N + (pipeline stages - 1)
+             = 56 + (5 - 1)
+             = 60 cycles
+```
+
+---
+
+### 🔹 Simulation Result
+
+However, in simulation:
+
+👉 **Observed cycles = 56 cycles**
+
+### ✅ Reason:
+
+* Pipeline **fill cycles are not counted** in waveform
+* No **stalling or branch penalty** is implemented
+* Processor achieves **ideal throughput (1 instruction per cycle)**
+
+---
+
+## 📷 Simulation Waveform
+
+![Simulation Waveform](https://github.com/Rohitvgupta15/RISC-V-5-Stage-Pipelined-Processor/blob/main/VIDEO/sort_cycle.png)
+
+You can see the start and stop clock difference is **560 ns**, and one clock cycle is **10 ns**, so total **56 clock cycles** this code takes.
+This matches with the **observed execution**.
+
+Also when **MemWriteE is high**, sorted values are written sequentially into memory.
+
+![Simulation Waveform](https://github.com/Rohitvgupta15/RISC-V-5-Stage-Pipelined-Processor/blob/main/VIDEO/sort_mem.png)
+
+---
+
+## ✅ Conclusion
+
+* The program ideally requires **60 cycles** including pipeline latency
+* Simulation shows **56 cycles** due to steady-state execution
+* Confirms **1 instruction per cycle (CPI = 1)**
+* Demonstrates efficient pipeline utilization without stalls
+
+---
+
 
 ## 📈 Applications
 
