@@ -385,6 +385,21 @@ Also when **MemWriteE is high**, sorted values are written sequentially into mem
 ![Simulation Waveform](https://github.com/Rohitvgupta15/RISC-V-5-Stage-Pipelined-Processor/blob/main/VIDEO/bubble_mem_reg_data.png)
 
 ---
+## ✅ Conclusion
+
+* The pipeline executes the program in **20 clock cycles (ideal case)**
+* Simulation result matches theoretical calculation
+* Confirms correct pipeline behavior
+
+## ✅ Conclusion
+
+* The program ideally requires **60 cycles** including pipeline latency
+* Simulation shows **56 cycles** due to steady-state execution
+* Confirms **1 instruction per cycle (CPI = 1)**
+* Demonstrates efficient pipeline utilization without stalls
+
+---
+
 # Instruction (Pipelined Processor)
 # 1) jalr (Jump and Link Register)
 ## 📌 Description
@@ -416,22 +431,6 @@ Also when RegwriteE is one at that time we are writing the ALUresult data in  re
 ![Simulation Waveform](https://github.com/Rohitvgupta15/RISC-V-5-Stage-Pipelined-Processor/blob/main/VIDEO/jalr_reg_data.png)
 
 ---
-
-## ✅ Conclusion
-
-* The pipeline executes the program in **20 clock cycles (ideal case)**
-* Simulation result matches theoretical calculation
-* Confirms correct pipeline behavior
-
-## ✅ Conclusion
-
-* The program ideally requires **60 cycles** including pipeline latency
-* Simulation shows **56 cycles** due to steady-state execution
-* Confirms **1 instruction per cycle (CPI = 1)**
-* Demonstrates efficient pipeline utilization without stalls
-
----
-
 
 ## 📈 Applications
 
