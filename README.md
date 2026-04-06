@@ -153,7 +153,7 @@ A demo video is included in this repository demonstrating:
 * Simulation flow
 * Execution of instructions
 * Pipeline behavior
-https://github.com/Rohitvgupta15/RISC-V-5-Stage-Pipelined-Processor/blob/main/VIDEO/step_to_run_testcases.mp4
+  [![Watch Demo](https://github.com/Rohitvgupta15/RISC-V-5-Stage-Pipelined-Processor/blob/main/VIDEO/step_to_run_testcases.mp4)
 ---
 
 ## 📈 Applications
