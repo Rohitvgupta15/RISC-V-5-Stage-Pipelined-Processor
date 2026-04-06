@@ -215,7 +215,7 @@ Total cycles = Number of instructions + (Pipeline stages - 1)
 
 ## 📷 Simulation Waveform
 
-![Simulation Waveform]([image.png](https://github.com/Rohitvgupta15/RISC-V-5-Stage-Pipelined-Processor/blob/main/VIDEO/max_cycle_decimal.png))
+![Simulation Waveform](https://github.com/Rohitvgupta15/RISC-V-5-Stage-Pipelined-Processor/blob/main/VIDEO/max_cycle_decimal.png)
 
 You can see the start and stop clock difference is **200 ns**, and one clock cycle is **10 ns**, so total **20 clock cycles** this code takes.
 This matches with the **calculated result**.
