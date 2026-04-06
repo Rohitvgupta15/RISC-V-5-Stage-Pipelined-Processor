@@ -118,9 +118,7 @@ A demo video is included in this repository showing:
 ## 📂 Project Structure
 
 ```
-├── src/        # Verilog design files
-├── tb/         # Testbench files
-├── README.md
+TOP : TOP_Group_no_5 (TOP_pipeline.sv) ├── Program_Counter : PC_Module (PC.sv) │ └── MUX_FETCH : Mux (Mux.sv) ├── Fetch : Fetch_Cycle (Fetch_Cycle.sv) │ ├── PCAdder : PC_Adder (PC_Adder.sv) │ └── I_MEM : Instruction_Memory (Instruction_Memory.sv) ├── Decode : Decode_Cycle (Decode_Cycle.v) │ ├── ctrl_unit : Control_Unit_Top (Control_Unit_Top.sv) │ │ ├── Main_Decoder (Main_Decoder.sv) │ │ └── ALU_Decoder (ALU_Decoder.sv) │ ├── RegFile : Register_File (Register_File.sv) │ └── SignExtend : Sign_Extend (Sign_Extend.sv) ├── Execute : Execute_Cycle (Execute_Cycle.sv) │ ├── ALU_E : ALU (ALU.sv) │ ├── ADDER_E : PC_Adder (PC_Adder.sv) │ ├── MUX3X1_3 : Mux_3_by_1 (Mux.sv) │ ├── MUX3X1_1 : Mux_3_by_1 (Mux.sv) │ └── MUX3X1_2 : Mux_3_by_1 (Mux.sv) ├── Memory : Memory_Cycle (Memory_Cycle.sv) │ └── DataMem : Data_Memory (Data_Memory.sv) ├── WriteBack : Writeback_Cycle (Writeback_Cycle.sv) │ └── result_mux : Mux_3_by_1 (Mux.sv) ├── HazardUnit : Hazard_Unit (Hazard_Unit.sv) ├── Instructions (instructions.data) ├── Reg File (reg_file.data) └── Waveform (waveform)
 ```
 
 ---
